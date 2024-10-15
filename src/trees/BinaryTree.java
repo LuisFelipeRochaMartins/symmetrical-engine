@@ -3,7 +3,7 @@ package trees;
 public class BinaryTree {
 
 	private Node root;
-	private Integer size;
+	private Integer size = 0;
 
 	public BinaryTree() {
 		this.root = null;
@@ -48,28 +48,28 @@ public class BinaryTree {
 			return null;
 		}
 
-		if (key.getKey() < root.getKey()) {
-			root.setLeft(removeData(root.getLeft(), key));
-		} else if (key.getKey() > root.getKey()) {
-			root.setRight(removeData(root.getRight(),key));
+		if (key.key < root.key) {
+			root.left = removeData(root.left, key);
+		} else if (key.key > root.key) {
+			root.right = removeData(root.right,key);
 		} else {
-			if (root.getLeft() == null) {
-				return root.getRight();
-			} else if (root.getRight() == null) {
-				return  root.getLeft();
+			if (root.left == null) {
+				return root.right;
+			} else if (root.right == null) {
+				return  root.left;
 			} else {
-				var successor = findSuccessor(root.getRight());
-				root.setKey(successor.getKey());
+				var successor = findSuccessor(root.right);
+				root.key = successor.key;
 
-				root.setRight(removeData(root.getRight(), successor));
+				root.right = removeData(root.right, successor);
 			}
 		}
 		return root;
 	}
 
 	private Node findSuccessor(Node root) {
-		while(root.getLeft() != null) {
-			root = root.getLeft();
+		while(root.left != null) {
+			root = root.left;
 		}
 
 		return root;
@@ -81,21 +81,21 @@ public class BinaryTree {
 			return root;
 		}
 
-		if (key.getKey() < root.getKey()) {
-			root.setLeft(insertData(root.getLeft(), key));
-		} else if (key.getKey() > root.getKey()) {
-			root.setRight(insertData(root.getRight(), key));
+		if (key.key < root.key) {
+			root.left = insertData(root.left, key);
+		} else if (key.key > root.key) {
+			root.right = insertData(root.right, key);
 		}
 
 		return root;
 	}
 
 	public Integer showGreaterKey(Node root) {
-		while(root.getRight() != null) {
-			root = root.getRight();
+		while(root.right != null) {
+			root = root.right;
 		}
 
-		return root.getKey();
+		return root.key;
 	}
 
 	public String toString() {
@@ -105,9 +105,9 @@ public class BinaryTree {
 	private String showDesc(Node root) {
 		var sb = new StringBuilder();
 		if (root != null) {
-			sb.append(showDesc(root.getLeft()));
-			sb.append(root.getKey());
-			sb.append(showDesc(root.getRight()));
+			sb.append(showDesc(root.left));
+			sb.append(root.key);
+			sb.append(showDesc(root.right));
 		}
 
 		return sb.toString();

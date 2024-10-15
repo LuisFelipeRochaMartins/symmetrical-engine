@@ -1,36 +1,29 @@
 package trees;
 
 public class Node {
-	private Integer key;
-	private Node left, right;
+	public Integer key;
+	public Node left, right;
+	private Integer leftHeight, rightHeight = 0;
 
 	public Node(Integer key) {
 		this.key = key;
 		left = right = null;
 	}
 
-	public Integer getKey() {
-		return key;
+	public Integer getLeftHeight() {
+		return leftHeight;
 	}
 
-	public void setKey(Integer key) {
-		this.key = key;
+	public void setLeftHeight(Integer leftHeight) {
+		this.leftHeight = leftHeight;
 	}
 
-	public Node getLeft() {
-		return left;
+	public Integer getRightHeight() {
+		return rightHeight;
 	}
 
-	public void setLeft(Node left) {
-		this.left = left;
-	}
-
-	public Node getRight() {
-		return right;
-	}
-
-	public void setRight(Node right) {
-		this.right = right;
+	public void setRightHeight(Integer rightHeight) {
+		this.rightHeight = rightHeight;
 	}
 
 	@Override
